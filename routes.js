@@ -18,7 +18,7 @@ router.post('/',(req,res,next) => {
             throw new ExpressError('nums are required',400);
         }else{
             fakeDb.push(req.body)
-            res.json({"added": {"name": `${req.body.name}`, "price": `${req.body.price}`}})
+            res.status(201).json({"added": {"name": `${req.body.name}`, "price": `${req.body.price}`}})
         }
 
     }catch(e){
@@ -43,7 +43,7 @@ router.get('/:name', (req, res, next) => {
 router.patch("/:name", function (req, res) {
     const foundItem = fakeDb.find(e => e.name === req.params.name)
     if (foundItem === undefined) {
-      throw new ExpressError("Cat not found", 404)
+      throw new ExpressError("item not found", 404)
     }
     foundItem.name = req.body.name 
     res.json({ fakeDb: foundItem });
@@ -53,7 +53,7 @@ router.patch("/:name", function (req, res) {
 router.delete('/:name', (req, res, next) => {
     const foundItem = fakeDb.findIndex(e => e.name === req.params.name)
     if (foundItem === -1) {
-      throw new ExpressError("Cat not found", 404)
+      throw new ExpressError("item not found", 404)
     }
     fakeDb.splice(foundItem, 1)
     res.json({ message: "Deleted" })

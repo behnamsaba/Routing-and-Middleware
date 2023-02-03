@@ -1,6 +1,4 @@
-global.items = [{"name": "ben", "price": 20},
-                {"name": "niloo", "price": 17},
-                {"name": "behnam", "price": 15}];
+global.items = [];
                 
 
 module.exports = items
